@@ -15,10 +15,10 @@ target_link_options(${PROJECT_NAME} PUBLIC
     -sMODULARIZE=1
     -sENVIRONMENT='web'")
 
-set(wasmd_wasm_path "/home/smrnv/Code/wasmd_web/src/wasm/")
+set(wasmd_wasm_path "D:/Code/wasmd_web/src/wasm/")
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_BINARY_DIR}/${PROJECT_NAME}" "${wasmd_wasm_path}${PROJECT_NAME}.js"
+    COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.js" "${wasmd_wasm_path}${PROJECT_NAME}.js"
     COMMENT "Copy ${PROJECT_NAME}")
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.wasm" "${wasmd_wasm_path}${PROJECT_NAME}.wasm"

@@ -1,0 +1,9 @@
+CompileFlags:
+  Add:
+    - "-IC:/emsdk/upstream/emscripten/cache/sysroot/include"
+
+Diagnostics:
+  Suppress:
+    - redefinition_different_typedef
+    - mismatched_exception_spec
+    - conflicting_types

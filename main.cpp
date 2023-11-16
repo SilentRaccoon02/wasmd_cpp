@@ -11,7 +11,7 @@ float add(float x, float y) { return x + y; }
 
 typedef void js();
 
-void callJs(int p) { ((js *)p)(); }
+void callJs(int p) { ((js *)p)(); } // NOLINT
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
