@@ -1,28 +1,20 @@
-#include <emscripten.h>
+#include <cstdint>
 #include <iostream>
+#include <sstream>
 
 extern "C" {
-EMSCRIPTEN_KEEPALIVE
-float add(float x, float y) { return x + y; }
-
-// extern void f(int a);
-// extern int g(int a, int b);
+float add(float a, float b);
+void run(char *str_p);
 }
 
-typedef void js();
+float add(float a, float b) { return a + b; }
 
-void callJs(int p) { ((js *)p)(); } // NOLINT
+using multiply = float(float a, float b);
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        std::cout << "Incorrect main call" << std::endl;
-        return 0;
-    }
+float callMultiply(uint64_t num_p, float a, float b) { return ((multiply *)num_p)(a, b); }
 
-    int p = std::stoi(std::string(argv[1]));
-    callJs(p);
-
-    // f(7);
-    // std::cout << "Function g returned " << g(2, 5) << std::endl;
-    return 0;
+void run(char *str_p) {
+    uint64_t num_p;
+    std::istringstream(str_p) >> num_p;
+    std::cout << "multiply: " << callMultiply(num_p, 25.0, 12.0) << std::endl;
 }
