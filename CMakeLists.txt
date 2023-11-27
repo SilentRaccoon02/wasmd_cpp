@@ -15,7 +15,7 @@ target_link_options(${PROJECT_NAME} PUBLIC
     -sEXPORT_ES6=1
     -sMODULARIZE=1")
 
-set(web_path "D:/Code/wasmd_web/src/wasm/")
+set(web_path "../../wasmd_web/src/wasm/")
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.js" "${web_path}${PROJECT_NAME}.js"
