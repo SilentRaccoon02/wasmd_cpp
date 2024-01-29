@@ -2,6 +2,9 @@
 #include <iostream>
 #include <sstream>
 
+#include <opencv2/core/mat.hpp>
+#include <opencv2/opencv.hpp>
+
 extern "C" {
 float add(float a, float b);
 void run(char *str_p);
@@ -17,4 +20,6 @@ void run(char *str_p) {
     uint64_t num_p;
     std::istringstream(str_p) >> num_p;
     std::cout << "multiply: " << callMultiply(num_p, 25.0, 12.0) << std::endl;
+
+    cv::Mat image;
 }

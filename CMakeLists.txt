@@ -6,6 +6,29 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(${PROJECT_NAME} main.cpp)
 
+# --- OpenCV start ---
+set(OPENCV_PATH "../opencv")
+
+# opencv2/opencv.hpp
+include_directories("${OPENCV_PATH}/include")
+
+# opencv.hpp for opencv2/opencv_modules.hpp
+include_directories("${OPENCV_PATH}/build_wasm")
+
+# opencv_modules.hpp for every module
+file(GLOB opencv_include_modules "${OPENCV_PATH}/modules/*/include")
+include_directories(${opencv_include_modules})
+
+# Link opencv.js precompiled libraries
+file(GLOB opencv_libs "${OPENCV_PATH}/build_wasm/lib/*.a")
+target_link_libraries(${PROJECT_NAME} ${opencv_libs})
+
+# There is an issue regarding the order in which libraries
+# are passed to the compiler - pass libopencv_core.a last
+file(GLOB opencv_lib_core "${OPENCV_PATH}/build_wasm/lib/libopencv_core.a")
+target_link_libraries(${PROJECT_NAME} ${opencv_lib_core})
+# --- OpenCV end ---
+
 target_link_options(${PROJECT_NAME} PUBLIC
     "SHELL:
     -sENVIRONMENT='web'
