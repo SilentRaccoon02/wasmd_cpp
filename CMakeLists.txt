@@ -3,8 +3,18 @@ project(module LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(${PROJECT_NAME} main.cpp)
+set(headers
+    tests.h
+)
+
+set(sources
+    main.cpp
+    tests.cpp
+)
+
+add_executable(${PROJECT_NAME} ${headers} ${sources})
 
 # --- OpenCV start ---
 set(OPENCV_PATH "../opencv")
@@ -32,7 +42,7 @@ target_link_libraries(${PROJECT_NAME} ${opencv_lib_core})
 target_link_options(${PROJECT_NAME} PUBLIC
     "SHELL:
     -sENVIRONMENT='web'
-    -sEXPORTED_FUNCTIONS=\"['_add', '_run']\"
+    -sEXPORTED_FUNCTIONS=\"['_testAdd', '_testMultiply']\"
     -sEXPORTED_RUNTIME_METHODS=\"['cwrap', 'addFunction']\"
     -sALLOW_TABLE_GROWTH
     -sEXPORT_ES6=1
