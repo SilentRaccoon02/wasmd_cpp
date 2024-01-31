@@ -42,7 +42,7 @@ target_link_libraries(${PROJECT_NAME} ${opencv_lib_core})
 target_link_options(${PROJECT_NAME} PUBLIC
     "SHELL:
     -sENVIRONMENT='web'
-    -sEXPORTED_FUNCTIONS=\"['_testAdd', '_testMultiply']\"
+    -sEXPORTED_FUNCTIONS=\"['_malloc', '_testAdd', '_testMultiply', '_testAccumulate']\"
     -sEXPORTED_RUNTIME_METHODS=\"['cwrap', 'addFunction']\"
     -sALLOW_TABLE_GROWTH
     -sEXPORT_ES6=1

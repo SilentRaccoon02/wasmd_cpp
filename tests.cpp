@@ -15,3 +15,10 @@ void testMultiply(char *str_p) {
     std::istringstream(str_p) >> num_p;
     std::cout << "multiply: " << callMultiply(num_p, 25.0, 12.0) << std::endl;
 }
+
+int8_t testAccumulate(int8_t *array, int8_t n) {
+    int8_t sum = 0;
+    for (int i = 0; i < n; ++i)
+        sum += array[i];
+    return sum;
+}
