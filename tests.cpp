@@ -16,9 +16,8 @@ void testMultiply(char *str_p) {
     std::cout << "multiply: " << callMultiply(num_p, 25.0, 12.0) << std::endl;
 }
 
-int8_t testAccumulate(int8_t *array, int8_t n) {
-    int8_t sum = 0;
-    for (int i = 0; i < n; ++i)
-        sum += array[i];
-    return sum;
+void testArray(uint8_t *in, uint8_t size, uint8_t delta) {
+    for (int i = 0; i < size; ++i) {
+        in[i] = in[i] + delta;
+    }
 }
