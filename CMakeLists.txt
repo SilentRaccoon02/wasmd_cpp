@@ -6,12 +6,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(headers
-    tests.h
 )
 
 set(sources
     main.cpp
-    tests.cpp
 )
 
 add_executable(${PROJECT_NAME} ${headers} ${sources})
@@ -42,10 +40,8 @@ target_link_libraries(${PROJECT_NAME} ${opencv_lib_core})
 target_link_options(${PROJECT_NAME} PUBLIC
     "SHELL:
     -sENVIRONMENT='web'
-    -sEXPORTED_FUNCTIONS=\"['_malloc', '_free', '_testAdd', '_testMultiply', '_testArray', '_processImage']\"
-    -sEXPORTED_RUNTIME_METHODS=\"['cwrap', 'addFunction']\"
-    -sNO_DISABLE_EXCEPTION_CATCHING
-    -sALLOW_TABLE_GROWTH
+    -sEXPORTED_FUNCTIONS=\"['_malloc', '_free', '_testArray', '_processImage']\"
+    -sEXPORTED_RUNTIME_METHODS=\"['cwrap']\"
     -sALLOW_MEMORY_GROWTH
     -sEXPORT_ES6=1
     -sMODULARIZE=1")
