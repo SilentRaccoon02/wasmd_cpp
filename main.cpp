@@ -23,10 +23,25 @@ uint8_t *processImage(uint8_t *inPointer, uint16_t width, uint16_t height) {
     size_t inSize = height * width * 4 * sizeof(uint8_t);
     memcpy(inImage.data, inPointer, inSize);
 
+    Mat gray;
     Mat canny;
+    Mat blurred;
+    cvtColor(inImage, gray, COLOR_RGBA2GRAY);
+    medianBlur(gray, blurred, 5);
+    Canny(blurred, canny, 80, 240);
+
+    vector<Mat> channels;
+    Mat empty = Mat::zeros(Size(blurred.cols, blurred.rows), CV_8UC1);
+    channels.push_back(canny);
+    channels.push_back(empty);
+    channels.push_back(empty);
+    channels.push_back(empty);
+
+    Mat red;
     Mat outImage;
-    Canny(inImage, canny, 80, 240);
-    cvtColor(canny, outImage, COLOR_GRAY2RGBA);
+    cvtColor(gray, outImage, COLOR_GRAY2RGBA);
+    merge(channels, red);
+    add(outImage, red, outImage);
 
     size_t outSize = outImage.total() * outImage.elemSize();
     uint8_t *outPointer = static_cast<uint8_t *>(malloc(outSize));
