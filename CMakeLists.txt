@@ -9,7 +9,7 @@ set(headers
 )
 
 set(sources
-    main.cpp
+    module.cpp
 )
 
 add_executable(${PROJECT_NAME} ${headers} ${sources})
