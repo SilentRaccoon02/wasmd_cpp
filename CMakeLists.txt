@@ -15,7 +15,8 @@ set(sources
 add_executable(${PROJECT_NAME} ${headers} ${sources})
 
 # --- OpenCV start ---
-set(OPENCV_PATH "../opencv")
+# https://github.com/webarkit/opencv-em
+set(OPENCV_PATH "./opencv")
 
 # opencv2/opencv.hpp
 include_directories("${OPENCV_PATH}/include")
@@ -40,7 +41,7 @@ target_link_libraries(${PROJECT_NAME} ${opencv_lib_core})
 target_link_options(${PROJECT_NAME} PUBLIC
     "SHELL:
     -sENVIRONMENT='web'
-    -sEXPORTED_FUNCTIONS=\"['_malloc', '_free', '_testArray', '_processImage']\"
+    -sEXPORTED_FUNCTIONS=\"['_malloc', '_free', '_run']\"
     -sEXPORTED_RUNTIME_METHODS=\"['cwrap']\"
     -sALLOW_MEMORY_GROWTH
     -sEXPORT_ES6=1
