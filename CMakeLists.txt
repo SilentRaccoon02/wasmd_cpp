@@ -45,7 +45,8 @@ target_link_options(${PROJECT_NAME} PUBLIC
     -sEXPORTED_RUNTIME_METHODS=\"['cwrap']\"
     -sALLOW_MEMORY_GROWTH
     -sEXPORT_ES6=1
-    -sMODULARIZE=1")
+    -sMODULARIZE=1
+    --pre-js ../pre.js")
 
 set(web_path "../../wasmd_web/src/wasm/")
 
